@@ -1,15 +1,16 @@
 from time import sleep
-
 import requests
 import json
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
 #id ваших таблиц
-#для серверов
+
+#для сохранения информации о серверах
 sheet_servers_id = "1QU95zOjy4TSVReB7LRu1-BMOGa6zKxt4wf7l-OQmHtY"
 
-#для аккаунтов
+#для сохранения информации аккаунтов
 sheet_accounts_id = "1P-8crhcmSo_0pl_Ii_dniQ40hMGFzcr7Nd9v8dXmrq8"
 
 def get_server_info(TOKEN):
@@ -136,9 +137,6 @@ def table_with_servers():
     client = gspread.authorize(creds)
 
     # Открытие таблицы по URL
-    # id вашей таблицы
-
-
 
     sheet_url = f'https://docs.google.com/spreadsheets/d/{sheet_servers_id}/edit#gid=0'
     sheet = client.open_by_url(sheet_url).sheet1
@@ -198,8 +196,7 @@ def table_with_account(tokens):
     client = gspread.authorize(creds)
 
     # Открытие таблицы по URL
-
-
+    
     sheet_url = f'https://docs.google.com/spreadsheets/d/{sheet_accounts_id}/edit#gid=0'
     sheet = client.open_by_url(sheet_url).sheet1
 
@@ -236,6 +233,7 @@ if __name__ == "__main__":
     print("--------------------------")
 
     tokens = table_with_servers()
+    
     print("--------------------------")
     print("Создание таблицы аккаунтов")
     print("--------------------------")
